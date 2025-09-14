@@ -27,7 +27,7 @@
 
 Установка и запуск проекта
 1. Клонировать проект
-git@github.com:ploxiw27/Sprint_6.git
+ - git@github.com:ploxiw27/Sprint_6.git
 2. Установить необходимые библиотеки
  -  pip install -r requirements.txt
 3. Запуск тестов
