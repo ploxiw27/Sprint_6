@@ -29,9 +29,9 @@
 1. Клонировать проект
 git@github.com:ploxiw27/Sprint_6.git
 2. Установить необходимые библиотеки
-pip install -r requirements.txt
+ -  pip install -r requirements.txt
 3. Запуск тестов
-pytest tests/
+-  pytest tests/
 
 Структура проекта
 - Тесты в папке tests
