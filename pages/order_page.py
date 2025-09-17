@@ -6,10 +6,6 @@ from locators.locators_order_page import OrderLocators
 from data_tests.data import Person
 
 class OrderPage(BasePage):
-    def __init__(self, driver):
-        super().__init__(driver)
-
-
     @allure.step('Клик по "Заказать" вверх, открываем форму заказа')
     def click_order_button_header(self, button: str) -> None:
         if button == 'button_hed':
@@ -65,10 +61,11 @@ class OrderPage(BasePage):
         self.click_on_element(OrderLocators.COLOR_SCOOTER)
 
     @allure.step('Оставить коммент курьеру')
-    def fill_comment_field(self) -> None:
-        person = Person()
-        person.fill_comment_field()
-        self.find_element_with_wait(OrderLocators.COMMENT).send_keys(person.comment)
+    def fill_comment_field(self, comment:str) -> None:
+        comment_field = self.find_element_with_wait(OrderLocators.COMMENT)
+
+        comment_field.clear()
+        comment_field.send_keys(comment)
 
 
     @allure.step('Клик Заказать')

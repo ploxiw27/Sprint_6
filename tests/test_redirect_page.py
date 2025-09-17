@@ -1,30 +1,36 @@
 import allure
 
+from pages import main_page
 from pages.main_page import MainPage
 from pages.redirect_page import RedirectPage
 
-def test_scooter_redirect(driver):
-    order_page = MainPage(driver)
-    order_page.open_url()
+@allure.title("Тестирование редиректа на главную страницу сайта и Я.Дзен")
+class TestRedirectPage():
+    def test_scooter_redirect(driver):
+        order_page = MainPage(driver)
+        order_page.open_url()
 
-    with allure.step(f'Переход на главную страницу Самоката при клике на лого самокат'):
-        order_page.click_scooter_logo()
+        with allure.step(f'Переход на главную страницу Самоката при клике на лого самокат'):
+            order_page.click_scooter_logo()
 
-        logo_page = RedirectPage(driver)
-        logo_page.click_scooter_logo()
-        assert logo_page.get_current_url() == 'https://qa-scooter.praktikum-services.ru/'
+            logo_page = RedirectPage(driver)
+            logo_page.click_scooter_logo()
+            assert logo_page.get_current_url() == main_page.get_current_url()
 
-def test_yandex_redirect(driver):
-    order_page = MainPage(driver)
-    order_page.open_url()
+    def test_yandex_redirect(self):
+        order_page = MainPage(self.driver)
+        order_page.open_url()
 
-    with allure.step('Проверка редиректа в Дзен по клику на Яндекс'):
-        redirect_dzen_page = RedirectPage(driver)
-        redirect_dzen_page.click_yandex_logo()
+        with allure.step('Проверка редиректа в Дзен по клику на Яндекс'): # Вызов нового окна
+            redirect_dzen_page = RedirectPage(self.driver)
+            redirect_dzen_page.click_yandex_logo()
 
-        handles = driver.window_handles
-        assert len(handles) == 2
-        driver.switch_to.window(handles[1])
-        redirect_dzen_page.find_element_find_button()
-        final_url = redirect_dzen_page.get_current_url()
-        assert 'https://dzen.ru/?yredirect=true' in final_url
+            handles = self.driver.window_handles
+            assert len(handles) == 2
+
+            self.switch_to_new_window(handles[1])
+
+            redirect_dzen_page.find_element_find_button()
+            final_url = redirect_dzen_page.get_current_url()
+
+            assert 'https://dzen.ru/?yredirect=true' in final_url

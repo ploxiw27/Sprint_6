@@ -12,7 +12,7 @@ class AnswerQuestion:
 
 class ButtonRedirect:
 
-    BUTTON_ORDER_HEADER = (By.XPATH, ".//div[2]/button[1]")
-    BUTTON_ORDER_LANDING = (By.XPATH, ".//div[5]/button")
-    SCOOTER_LOGO = (By.XPATH, "//*/div/div/div[1]/div[1]/a[2]")
-    YANDEX_LOGO = (By.XPATH, "//*/div/div/div[1]/div[1]/a[1]")
+    BUTTON_ORDER_HEADER = (By.XPATH, "//div[2]/button[1]")
+    BUTTON_ORDER_LANDING = (By.XPATH, "//div[5]/button")
+    SCOOTER_LOGO = (By.XPATH, "//div[1]/a[2]")
+    YANDEX_LOGO = (By.XPATH, "//div[1]/a[1]")
