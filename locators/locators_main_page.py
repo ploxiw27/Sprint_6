@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 class QuestionMain:
 
     QUESTION_BUTTON = (By.ID, "accordion__heading-{}")
-    QUESTION_8 = (By.XPATH, ".//div/div[8]")
+    QUESTION_8 = (By.XPATH, "//div/div[8]")
 
 class AnswerQuestion:
 
