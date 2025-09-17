@@ -4,7 +4,7 @@ from pages.order_page import OrderPage
 
 @allure.title('Проверка заказа самоката, появление окон заказа')
 @pytest.mark.parametrize('button', ['button_header', 'button_page'])
-class TestOrderPage:
+class TestOrderPage():
     def test_order_page(driver, button):
         order_page = OrderPage(driver)
         order_page.open_url()

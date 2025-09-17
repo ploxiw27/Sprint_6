@@ -2,6 +2,7 @@
 ### Example user template
 
 # IntelliJ project files
+__pycache__
 .idea
 *.iml
 out
