@@ -5,10 +5,6 @@ from locators.locators_redirect_page import RedirectLocators
 
 class RedirectPage(BasePage):
 
-    def __init__(self, driver):
-        super().__init__(driver)
-
-
     @allure.step('Клик по лого Самокат в шапке')
     def click_scooter_logo(self):
         self.click_on_element(ButtonRedirect.SCOOTER_LOGO)
