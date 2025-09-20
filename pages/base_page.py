@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from curls import main_site
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 class BasePage:
     MAIN_URL = main_site
@@ -45,5 +46,3 @@ class BasePage:
     @allure.step('Переключение на новое окно')
     def switch_to_new_window(self, window_handle):
         self.driver.switch_to.window(window_handle)
-
-

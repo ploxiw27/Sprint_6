@@ -1,4 +1,4 @@
-from russian_names import RussianNames
+from russian_names import RussianNames, names
 import random
 
 class AnswerMain:
@@ -13,29 +13,49 @@ class AnswerMain:
         7: 'Да, обязательно. Всем самокатов! И Москве, и Московской области.'
     }
 
-class Person: # Генерация случайного пользователя с русским именем Имя Фамилия Адрес Цвет самоката
-    generator = RussianNames()
-    full_name = generator.get_person()
-    random_name = full_name.split()[0]
-    random_surname = full_name.split()[2]
-    random_phone_number = f"+7{random.randint(900, 999)}{random.randint(100, 999)}{random.randint(1001, 9999)}"
-    random_date = f"{random.randint(1, 28)}"
-    current_period_name = ["сутки", "двое суток", "трое суток"]
-    random_period = f"{random.choice(current_period_name)}"
-    current_station_list = ["Первомайская", "Измайловская", "Партизанская", "Киевская"]
-    random_station = f"{random.choice(current_station_list)}"
-    colors = ["black", "grey"]
-    random_color = f"{random.choice(colors)}"
+class Person:
+    random_color = None
 
-    def fill_adress_field(self):
-        current_street_name = ["Первомайская", "Ленина", "Маяковского", "Парковая", "Заводская", "Пушкина", "Плащадь"]
+    def __init__(self):
+        self.generator = RussianNames()
+        self.full_name = self.generator.get_person()
+        self.random_name = self.full_name.split()[0]  # Генерируем имя
+        self.random_surname = self.full_name.split()[2]  # Генерируем фамилию
+        self.random_phone_number = self.generate_random_phone_number()
+        self.random_date = self.generate_random_date()
+        self.random_period = self.generate_random_rental_period()
+        self.random_station = self.generate_random_station()
+        self.random_color = self.generate_random_color()
+        self.address = self.fill_address()  # Генерируем адрес сразу
+        self.comment = self.fill_comment()  # Генерируем комментарий сразу
+
+    def generate_random_phone_number(self) -> str:
+        return f"+7{random.randint(900, 999)}{random.randint(100, 999)}{random.randint(1000, 9999)}"
+
+    def generate_random_date(self) -> str:
+        return str(random.randint(1, 28))
+
+    def generate_random_rental_period(self) -> str:
+        current_period_name = ["сутки", "двое суток", "трое суток", "четверо суток", "пятеро суток", "шестеро суток", "семеро суток"]
+        return random.choice(current_period_name)
+
+    def generate_random_station(self) -> str:
+        current_station_list = ["Первомайская", "Измайловская", "Партизанская", "Киевская"]
+        return random.choice(current_station_list)
+
+    def generate_random_color(self) -> str:
+        colors = ["black", "grey"]
+        return random.choice(colors)
+
+    def fill_address(self) -> str:
+        current_street_name = ["Первомайская", "Ленина", "Маяковского", "Парковая", "Заводская", "Пушкина", "Площадь"]
         street = random.choice(current_street_name)
         house = random.randint(1, 100)
         flat = random.randint(1, 100)
-        self.adress = f"Москва, {street}, {house}, {flat}"
+        return f"Москва, {street}, {house}, {flat}"
 
-    def fill_comment_field(self):
+    def fill_comment(self) -> str:
         current_words = ["Хочется с колесами", "Хочу с рулем", "Можно без сиденья"]
         words = random.choice(current_words)
         numbers = random.randint(100, 1000)
-        self.comment =f"Комментарий, {words}, {numbers}"
+        return f"Комментарий: {words}, {numbers}"
