@@ -4,8 +4,9 @@ from pages import main_page
 from pages.main_page import MainPage
 from pages.redirect_page import RedirectPage
 
-@allure.title("Тестирование редиректа на главную страницу сайта")
+
 class TestRedirectPage:
+    @allure.title("Тестирование редиректа на главную страницу сайта")
     def test_scooter_redirect(driver):
         order_page = MainPage(driver)
         order_page.open_url()
