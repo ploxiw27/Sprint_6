@@ -1,9 +1,9 @@
 import allure
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from curls import main_site
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
+from curls import main_site
+
 
 class BasePage:
     MAIN_URL = main_site

@@ -1,15 +1,14 @@
 from datetime import date
 
 import allure
-import self
 from selenium.webdriver.common.keys import Keys
-from pages.base_page import BasePage
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+
 from locators.locators_main_page import ButtonRedirect
 from locators.locators_order_page import OrderLocators
-from  selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from data_tests.data import Person
+from pages.base_page import BasePage
+
 
 class OrderPage(BasePage):
     @allure.step('Клик по "Заказать" вверх, открываем форму заказа')
@@ -66,7 +65,6 @@ class OrderPage(BasePage):
     @allure.step('Выбрать срок Ренты')
     def rental_period(self) -> None:
         self.click_on_element(OrderLocators.RENTAL_DATE)
-        from selenium.webdriver.support.wait import WebDriverWait
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(OrderLocators.FILL_DATE))
         self.click_on_element(OrderLocators.FILL_DATE)
         self.find_element_with_wait(OrderLocators.FILL_DATE).click()

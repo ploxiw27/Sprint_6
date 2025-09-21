@@ -1,5 +1,6 @@
-import pytest
 import allure
+import pytest
+
 from data_tests.data import AnswerMain
 from pages.main_page import MainPage
 

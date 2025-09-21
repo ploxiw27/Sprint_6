@@ -1,7 +1,9 @@
 import allure
-from pages.base_page import BasePage
+
 from locators.locators_main_page import ButtonRedirect
 from locators.locators_redirect_page import RedirectLocators
+from pages.base_page import BasePage
+
 
 class RedirectPage(BasePage):
 

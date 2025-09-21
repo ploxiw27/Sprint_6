@@ -1,8 +1,8 @@
 import allure
-from locators.locators_main_page import QuestionMain
+
 from locators.locators_main_page import AnswerQuestion
 from locators.locators_main_page import ButtonRedirect
-
+from locators.locators_main_page import QuestionMain
 from pages.base_page import BasePage
 
 
