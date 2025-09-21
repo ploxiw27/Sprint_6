@@ -1,6 +1,5 @@
 import allure
 
-from pages import main_page
 from pages.main_page import MainPage
 from pages.redirect_page import RedirectPage
 
@@ -16,7 +15,8 @@ class TestRedirectPage:
 
             logo_page = RedirectPage(driver)
             logo_page.click_scooter_logo()
-            assert logo_page.get_current_url() == main_page.get_current_url()
+
+            assert logo_page.get_current_url() == order_page.get_current_url()
 
     @allure.title("Тестирование редиректа на главную страницу сайта Я.Дзен")
     def test_yandex_redirect(self, driver):
@@ -27,10 +27,10 @@ class TestRedirectPage:
             redirect_dzen_page = RedirectPage(driver)
             redirect_dzen_page.click_yandex_logo()
 
-            handles = driver.window_handles
+            handles = redirect_dzen_page.driver.window_handles
             assert len(handles) == 2
 
-            driver.switch_to.window(handles[-1])
+            redirect_dzen_page.driver.switch_to.window(handles[-1])
 
             find_button = redirect_dzen_page.find_element_find_button()
             assert find_button is not None

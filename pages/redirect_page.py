@@ -7,13 +7,13 @@ from pages.base_page import BasePage
 
 class RedirectPage(BasePage):
 
-    @allure.step('Клик по лого Самокат в шапке')
-    def click_scooter_logo(self):
-        self.click_on_element(ButtonRedirect.SCOOTER_LOGO)
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.YANDEX_LOGO = None
 
     @allure.step('Клик по лого Яндекс')
     def click_yandex_logo(self):
-        self.click_on_element(ButtonRedirect.YANDEX_LOGO)
+        self.click_on_element(self.YANDEX_LOGO)
 
     @allure.step('Переход на главную Дзен')
     def find_button_element(self):

@@ -19,22 +19,25 @@ class BasePage:
 
     @allure.step('Скролл до элемента')
     def scroll_to_element(self, locator):
-        element = self.find_element_with_wait(*locator)
+        element = self.find_element_with_wait(locator)
         self.driver.execute_script('arguments[0].scrollIntoView();', element)
 
+    def find_element_with_wait(self, locator, timeout=12):
 
-    @allure.step('Поиск элемента')
-    def find_element_with_wait(self, locator):
-        return self.wait.until(EC.visibility_of_element_located(*locator))
+        if locator is None:
+            raise ValueError("Locator cannot be None")
+
+        wait = WebDriverWait(self.driver, timeout)
+        return wait.until(EC.visibility_of_element_located(locator))
 
     @allure.step("Клик по элементу")
     def click_on_element(self, locator):
-        element = self.find_element_with_wait(*locator)
+        element = self.find_element_with_wait(locator)
         element.click()
 
     @allure.step("Получение текста элемента")
     def get_text_to_element(self, locator):
-        element = self.find_element_with_wait(*locator)
+        element = self.find_element_with_wait(locator)
         return element.text
 
 
