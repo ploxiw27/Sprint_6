@@ -7,16 +7,16 @@ from pages.redirect_page import RedirectPage
 class TestRedirectPage:
     @allure.title("Тестирование редиректа на главную страницу сайта")
     def test_scooter_redirect(self, driver):
-        order_page = MainPage(driver)
-        order_page.open_url()
+        main_page = MainPage(driver)
+        main_page.open_url()
 
         with allure.step(f'Переход на главную страницу Самоката при клике на лого самокат'):
-            order_page.click_scooter_logo()
+            main_page.click_scooter_logo()
 
             logo_page = RedirectPage(driver)
             logo_page.click_scooter_logo()
 
-            assert logo_page.get_current_url() == order_page.get_current_url()
+            assert logo_page.get_current_url() == main_page.get_current_url()
 
     @allure.title("Тестирование редиректа на главную страницу сайта Я.Дзен")
     def test_yandex_redirect(self, driver):
