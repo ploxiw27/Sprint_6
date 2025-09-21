@@ -22,6 +22,7 @@ class BasePage:
         element = self.find_element_with_wait(locator)
         self.driver.execute_script('arguments[0].scrollIntoView();', element)
 
+    @allure.step('Ожидание видимости элемента')
     def find_element_with_wait(self, locator, timeout=12):
 
         if locator is None:

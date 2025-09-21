@@ -9,7 +9,6 @@ class RedirectPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.YANDEX_LOGO = None
 
     @allure.step('Клик по лого Яндекс')
     def click_yandex_logo(self):
@@ -18,3 +17,7 @@ class RedirectPage(BasePage):
     @allure.step('Переход на главную Дзен')
     def find_button_element(self):
         return self.find_element_with_wait(RedirectLocators.DZEN_FIND_BUTTON)
+
+    @allure.step('Клик лого Самокат')
+    def click_scooter_logo(self):
+        self.click_on_element(self.SCOOTER_LOGO)
