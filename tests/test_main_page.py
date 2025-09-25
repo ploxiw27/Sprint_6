@@ -4,9 +4,10 @@ import pytest
 from data_tests.data import AnswerMain
 from pages.main_page import MainPage
 
-@allure.title("Проверка текста ответов на важные вопросы")
+
 @pytest.mark.parametrize("question_num, expected_answers", AnswerMain.ANSWERS.items())
 class TestMainPage:
+    @allure.title("Проверка текста ответов на важные вопросы")
     def test_main_page(driver, question_num, expected_answers):
         main_page = MainPage(driver)
         main_page.open_url()

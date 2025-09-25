@@ -21,8 +21,8 @@ class OrderPage(BasePage):
 
     @allure.step('Загрузка страницы Заказа, видно поле Имя')
     def name_field_element_wait(self) -> bool:
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(OrderLocators.INPUT_NAME_FIELD))
-        return self.find_element_with_wait(OrderLocators.INPUT_NAME_FIELD).is_enabled()
+        element = self.find_element_with_wait(OrderLocators.INPUT_NAME_FIELD)
+        return element.is_enabled()
 
     @allure.step('Заполнить Имя')
     def fill_name_field(self, name: str) -> None:
@@ -65,9 +65,6 @@ class OrderPage(BasePage):
     @allure.step('Выбрать срок Ренты')
     def rental_period(self) -> None:
         self.click_on_element(OrderLocators.RENTAL_DATE)
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(OrderLocators.FILL_DATE))
-        self.click_on_element(OrderLocators.FILL_DATE)
-        self.find_element_with_wait(OrderLocators.FILL_DATE).click()
         self.click_on_element(OrderLocators.FILL_DATE)
 
     @allure.step('Выбор цвета самоката')
@@ -88,3 +85,20 @@ class OrderPage(BasePage):
     @allure.step('Подтверждение Заказа клик Да')
     def click_yes_button_element(self) -> None:
         self.click_on_element(OrderLocators.CONFIRM_YES)
+
+    @allure.step('Появление pop-up заказа')
+    def is_success_popup_displayed(self):
+        try:
+            popup = self.find_element_with_wait(self.SUCCESS_MODAL)
+            return popup.is_displayed()
+        except:
+            return False
+
+    @allure.step('Сообщения о заказе')
+    def get_success_message(self):
+
+        if self.is_success_popup_displayed():
+            header = self.find_element_with_wait(self.ORDER_HEADER)
+            order_text = self.find_element_with_wait(self.ORDER_TEXT)
+            return header.text + " " + order_text.text
+        return None

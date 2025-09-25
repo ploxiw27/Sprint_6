@@ -18,3 +18,6 @@ class OrderLocators:
     COMMENT = (By.XPATH, "//input[@type='text' and @placeholder='Комментарий для курьера']")
     ORDER = (By.XPATH, '//button[text()="Заказать"]')
     CONFIRM_YES = (By.XPATH, '//button[text()="Да"]')
+    SUCCESS_MODAL = (By.XPATH, "//div[contains(@class, 'Order_Modal__YZ-d3')]") # Модальное всплывающее окно заказа
+    ORDER_HEADER = (By.XPATH, "//div[contains(@class, 'Order_ModalHeader__3FDaJ')]") # Заголовок
+    ORDER_TEXT = (By.XPATH, "//div[contains(@class, 'Order_Text__2broi')]") # Текст заказа

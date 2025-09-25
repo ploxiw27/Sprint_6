@@ -5,10 +5,11 @@ from data_tests.data import Person
 from pages.order_page import OrderPage
 
 
-@allure.title('Проверка заказа самоката, появление окон заказа')
+
 @pytest.mark.parametrize('button', ['button_header', 'button_page'])
 class TestOrderPage:
 
+    @allure.title('Проверка заказа самоката, появление окон заказа')
     def test_order_page(self, driver, button):
         order_page = OrderPage(driver)
         order_page.open_url()
@@ -31,3 +32,11 @@ class TestOrderPage:
             order_page.colors_scooter()
             order_page.click_order_button_element()
             order_page.click_yes_button_element()
+
+            with allure.step('Проверка pop-up окна о создании заказа'):
+                assert order_page.is_success_popup_displayed()
+
+                success_message = order_page.get_success_message()
+                assert success_message is not None
+
+                assert "Заказ оформлен" in success_message
